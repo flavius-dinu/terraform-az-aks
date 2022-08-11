@@ -1,9 +1,6 @@
-# Terraform Module Template
-
-This template can be used to easily start building your terraform modules.
-
+# Azure AKS Module
 ## Workflows
-In this template there are 3 github actions workflows:
+In this repository there are 3 github actions workflows:
 - **auto_tag.yaml**
     - this workflow will run whenever a merge to the main branch occurs
     - it will by default tag your repository with a Patch bump (version format is: vMajor.Minor.Patch)
@@ -26,11 +23,40 @@ After you install all of these, you can go to the root directory of the reposito
 
 This will fix all the problems related to the hooks mentioned above.
 
-## Taking advantage of Terraform-Docs
-
-You will need to add the following in **README.md** in order to auto-populate the documentation with terraform-docs.
+## Module
 ```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.17.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_kubernetes_cluster.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_kube_params"></a> [kube\_params](#input\_kube\_params) | name                = string<br>rg\_name             = string<br>rg\_location         = string<br>dns\_prefix          = string<br>client\_id           = string<br>client\_secret       = string<br>vm\_size             = string<br>enable\_auto\_scaling = string<br>max\_count           = number<br>min\_count           = number<br>node\_count          = number<br>np\_name             = string<br>service\_principal   = list(object({<br>  client\_id     = string<br>  client\_secret = string<br>}))<br>identity            = list(object({<br>  type         = string<br>  identity\_ids = list(string)<br>})) | `any` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global tags to apply to the resources. | `any` | `{}` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_kube_params"></a> [kube\_params](#output\_kube\_params) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ```
