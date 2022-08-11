@@ -24,7 +24,6 @@ After you install all of these, you can go to the root directory of the reposito
 This will fix all the problems related to the hooks mentioned above.
 
 ## Module
-```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -59,4 +58,3 @@ No modules.
 |------|-------------|
 | <a name="output_kube_params"></a> [kube\_params](#output\_kube\_params) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-```
