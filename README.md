@@ -34,6 +34,7 @@ No requirements.
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.17.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.2.3 |
 
 ## Modules
 
@@ -44,6 +45,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_kubernetes_cluster.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) | resource |
+| [local_file.kube_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 
 ## Inputs
 
@@ -56,5 +58,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_kube_config"></a> [kube\_config](#output\_kube\_config) | n/a |
 | <a name="output_kube_params"></a> [kube\_params](#output\_kube\_params) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

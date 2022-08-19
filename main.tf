@@ -31,3 +31,9 @@ resource "azurerm_kubernetes_cluster" "this" {
   }
   tags = merge(var.tags, lookup(each.value, "tags", {}))
 }
+
+resource "local_file" "kube_config" {
+  for_each = { for k, v in var.kube_params : k => v if lookup(v, "export_kube_config", false) == true }
+  filename = lookup(each.value, "kubeconfig_path", "~./kube/config")
+  content  = azurerm_kubernetes_cluster.this[each.key].kube_config_raw
+}

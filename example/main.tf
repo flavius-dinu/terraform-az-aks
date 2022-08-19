@@ -16,6 +16,7 @@ module "aks" {
       min_count           = 1
       node_count          = 1
       np_name             = "kube1"
+      # export_kube_config  = true
     }
   }
 }
