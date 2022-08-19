@@ -59,5 +59,6 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_kube_config"></a> [kube\_config](#output\_kube\_config) | n/a |
+| <a name="output_kube_config_path"></a> [kube\_config\_path](#output\_kube\_config\_path) | n/a |
 | <a name="output_kube_params"></a> [kube\_params](#output\_kube\_params) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
