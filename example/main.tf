@@ -12,8 +12,6 @@ module "aks" {
       dns_prefix          = "kube"
       identity            = [{}]
       enable_auto_scaling = false
-      max_count           = 1
-      min_count           = 1
       node_count          = 1
       np_name             = "kube1"
       export_kube_config  = true
