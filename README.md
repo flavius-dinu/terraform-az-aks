@@ -27,13 +27,17 @@ This will fix all the problems related to the hooks mentioned above.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 3.15.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | >= 2.2.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.17.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.38.0 |
 | <a name="provider_local"></a> [local](#provider\_local) | 2.2.3 |
 
 ## Modules
@@ -51,8 +55,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_kube_params"></a> [kube\_params](#input\_kube\_params) | name                = string<br>rg\_name             = string<br>rg\_location         = string<br>dns\_prefix          = string<br>client\_id           = string<br>client\_secret       = string<br>vm\_size             = string<br>enable\_auto\_scaling = string<br>max\_count           = number<br>min\_count           = number<br>node\_count          = number<br>np\_name             = string<br>service\_principal   = list(object({<br>  client\_id     = string<br>  client\_secret = string<br>}))<br>identity            = list(object({<br>  type         = string<br>  identity\_ids = list(string)<br>})) | `any` | n/a | yes |
-| <a name="input_tags"></a> [tags](#input\_tags) | Global tags to apply to the resources. | `any` | `{}` | no |
+| <a name="input_kube_params"></a> [kube\_params](#input\_kube\_params) | AKS params | <pre>map(object({<br>    name                = string<br>    rg_name             = string<br>    rg_location         = string<br>    dns_prefix          = string<br>    client_id           = optional(string, null)<br>    client_secret       = optional(string, null)<br>    vm_size             = optional(string, "Standard_DS2_v2")<br>    enable_auto_scaling = optional(string, true)<br>    max_count           = optional(number, 1)<br>    min_count           = optional(number, 1)<br>    node_count          = optional(number, 1)<br>    np_name             = string<br>    service_principal = optional(list(object({<br>      client_id     = optional(string, null)<br>      client_secret = optional(string, null)<br>    })), [])<br>    identity = optional(list(object({<br>      type         = optional(string, "SystemAssigned")<br>      identity_ids = optional(list(string), [])<br>    })), [])<br>    kubeconfig_path = optional(string, "~./kube/config")<br>  }))</pre> | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Global tags to apply to the resources | `map(string)` | `{}` | no |
 
 ## Outputs
 

@@ -6,16 +6,16 @@ resource "azurerm_kubernetes_cluster" "this" {
   dns_prefix          = each.value.dns_prefix
 
   default_node_pool {
-    enable_auto_scaling = lookup(each.value, "enable_auto_scaling", true)
-    max_count           = lookup(each.value, "enable_auto_scaling", true) ? lookup(each.value, "max_count", 1) : null
-    min_count           = lookup(each.value, "enable_auto_scaling", true) ? lookup(each.value, "min_count", 1) : null
-    node_count          = lookup(each.value, "node_count", 1)
-    vm_size             = lookup(each.value, "vm_size", "Standard_DS2_v2")
+    enable_auto_scaling = each.value.enable_auto_scaling
+    max_count           = each.value.enable_auto_scaling == true ? each.value.max_count : null
+    min_count           = each.value.enable_auto_scaling == true ? each.value.min_count : null
+    node_count          = each.value.node_count
+    vm_size             = each.value.vm_size
     name                = each.value.np_name
   }
 
   dynamic "service_principal" {
-    for_each = lookup(each.value, "service_principal", [])
+    for_each = each.value.service_principal
     content {
       client_id     = service_principal.value.client_id
       client_secret = service_principal.value.client_secret
@@ -23,17 +23,17 @@ resource "azurerm_kubernetes_cluster" "this" {
   }
 
   dynamic "identity" {
-    for_each = lookup(each.value, "identity", [])
+    for_each = each.value.identity
     content {
-      type         = lookup(identity.value, "type", "SystemAssigned")
-      identity_ids = lookup(identity.value, "identity_ids", null)
+      type         = identity.value.type
+      identity_ids = identity.value.identity_ids
     }
   }
-  tags = merge(var.tags, lookup(each.value, "tags", {}))
+  tags = merge(var.tags, each.value.tags)
 }
 
 resource "local_file" "kube_config" {
-  for_each = { for k, v in var.kube_params : k => v if lookup(v, "export_kube_config", false) == true }
-  filename = lookup(each.value, "kubeconfig_path", "~./kube/config")
+  for_each = { for k, v in var.kube_params : k => v if v.export_kube_config == true }
+  filename = each.value.kubeconfig_path
   content  = azurerm_kubernetes_cluster.this[each.key].kube_config_raw
 }
