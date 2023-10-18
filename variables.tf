@@ -20,8 +20,9 @@ variable "kube_params" {
       type         = optional(string, "SystemAssigned")
       identity_ids = optional(list(string), [])
     })), [])
-    kubeconfig_path = optional(string, "~./kube/config")
-    tags            = optional(map(string), {})
+    kubeconfig_path    = optional(string, "~./kube/config")
+    export_kube_config = optional(bool, false)
+    tags               = optional(map(string), {})
   }))
   description = "AKS params"
 }
