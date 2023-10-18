@@ -21,6 +21,7 @@ variable "kube_params" {
       identity_ids = optional(list(string), [])
     })), [])
     kubeconfig_path = optional(string, "~./kube/config")
+    tags            = optional(map(string), {})
   }))
   description = "AKS params"
 }
