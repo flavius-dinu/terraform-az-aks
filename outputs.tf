@@ -3,7 +3,8 @@ output "kube_params" {
 }
 
 output "kube_config" {
-  value = { for kube in azurerm_kubernetes_cluster.this : kube.name => kube.kube_config_raw }
+  value     = { for kube in azurerm_kubernetes_cluster.this : kube.name => kube.kube_config_raw }
+  sensitive = true
 }
 
 output "kube_config_path" {
